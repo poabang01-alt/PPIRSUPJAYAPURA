@@ -1,170 +1,277 @@
 <!doctype html>
 <html lang="id">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Pengaturan</title>
+  <!-- = = = = = 
+ INI DASHBOARD UTAMA
+ = = = = = = = -->
 
-<!-- Favicon -->
-<link rel="icon" type="image/png" href="assets/img/logo kemenkes.png" />
+  <!-- = = = = =  HEAD = = = = = -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pengaturan</title>
 
-<!-- Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/img/logo kemenkes.png" />
 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;Lasi500;600;700&display=swap" rel="stylesheet" />
 
-<!-- CSS -->
-<link rel="stylesheet" href="pengaturan.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-<!-- Chart -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/pengaturan/pengaturan.css" />
 
-<body class="dark">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
 
-<div class="app">
+  <body class="dark">
+    <!-- = = = = = COMMAND PALETTE = = = = = -->
+    <div class="command-palette" id="commandPalette">
+      <div class="cp-overlay" onclick="closePalette()"></div>
+      <div class="cp-box">
+        <div class="cp-header">
+          <i class="fa-solid fa-magnifying-glass"></i>+
+          <input id="cpInput" type="text" placeholder="Type a command or search..." />
+          <span class="cp-kbd">Esc</span>
+        </div>
 
-<!-- ================= SIDEBAR ================= -->
-<aside class="sidebar">
-<div>
+        <ul class="cp-list" id="cpList">
+          <li data-action="dashboard"><i class="fa-solid fa-gauge"></i> Go to Dashboard</li>
+          <li data-action="observasi"><i class="fa-solid fa-database"></i> Data Observasi</li>
+          <li data-action="form-apd"><i class="fa-solid fa-file-pen"></i> Form APD</li>
+          <li data-action="laporan"><i class="fa-solid fa-file-lines"></i> Laporan Bulanan</li>
+          <li data-action="settings"><i class="fa-solid fa-gear"></i> Settings</li>
+          <li data-action="logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
+        </ul>
+      </div>
+    </div>
 
-<div class="brand">
-<a href="../../index.html">
-<img src="../img/logo kemenkes.png" />
-</a>
-<div class="brand-text">
-<strong>Kemenkes</strong><br>
-<span>RS Jayapura</span>
-</div>
-</div>
+    <div class="app">
+      <!-- = = = = = SIDEBAR = = = = = -->
+      <aside class="sidebar">
+        <div>
+          <div class="brand">
+            <a href="index.html"><img src="assets/img/logo kemenkes.png" alt="Logo" /></a>
+            <div class="brand-text">
+              <strong>Kemenkes</strong><br />
+              <span>RS Jayapura</span>
+            </div>
+          </div>
 
-<nav class="menu">
+          <nav class="menu">
+            <a href="index.html">
+              <i class="fa-solid fa-gauge"></i>
+              <span> Dashboard </span>
+            </a>
 
-<a href="../../index.html">
-<i class="fa-solid fa-gauge"></i>
-<span>Dashboard</span>
-</a>
+            <!-- Menu Utama DATA OBSERVASI -->
+            <div class="menu-item">
+              <a onclick="toggleMenu(this)">
+                <i class="fa-solid fa-database"></i>
+                <span>Data Observasi</span>
+                <i class="fa-solid fa-chevron-down arrow"></i>
+              </a>
+              <div class="submenu">
+                <a href="assets/data-observasi/kepatuhan-apd/kepatuhanapd.html"> Kepatuhan APD </a>
+                <a href="assets/data-observasi/cuci-tangan/cucitangan.html"> Cuci Tangan </a>
+              </div>
+            </div>
 
-<!-- DATA OBSERVASI -->
-<div class="menu-item">
-<a onclick="toggleMenu(this)">
-<i class="fa-solid fa-database"></i>
-<span>Data Observasi</span>
-<i class="fa-solid fa-chevron-down arrow"></i>
-</a>
+            <!-- Menu Utama PENGISIAN FORM -->
+            <div class="menu-item">
+              <a onclick="toggleMenu(this)">
+                <i class="fa-solid fa-file-pen"></i>
+                <span>Pengisian Form</span>
+                <i class="fa-solid fa-chevron-down arrow"></i>
+              </a>
+              <div class="submenu">
+                <a href="assets/pengisian-form/form-apd/formapd.html"> Form APD </a>
+                <a href="assets/pengisian-form/form-cuci-tangan/formcucitangan.html"> Form Cuci Tangan </a>
+              </div>
+            </div>
 
-<div class="submenu">
-<a href="../data-observasi/kepatuhan-apd/kepatuhanapd.html">Kepatuhan APD</a>
-<a href="../data-observasi/cuci-tangan/cucitangan.html">Cuci Tangan</a>
-</div>
-</div>
+            <!-- Menu Utama LAPORAN BULANAN -->
+            <div class="menu-item">
+              <a onclick="toggleMenu(this)">
+                <i class="fa-solid fa-file-lines"></i>
+                <span>Laporan Bulanan</span>
+                <i class="fa-solid fa-chevron-down arrow"></i>
+              </a>
+              <div class="submenu">
+                <a href="assets/laporan-bulanan/laporan-apd/laporanapd.html"> Laporan APD </a>
+                <a href="assets/laporan-bulanan/laporan-cuci-tangan/laporancucitangan.html"> Laporan Cuci Tangan </a>
+              </div>
+            </div>
 
-<!-- FORM -->
-<div class="menu-item">
-<a onclick="toggleMenu(this)">
-<i class="fa-solid fa-file-pen"></i>
-<span>Pengisian Form</span>
-<i class="fa-solid fa-chevron-down arrow"></i>
-</a>
+            <!-- MENU TUNGGAL -->
+            <a href="assets/akun-terdaftar/akunterdaftar.html">
+              <i class="fa-solid fa-users"></i>
+              <span>Akun Terdaftar</span>
+            </a>
 
-<div class="submenu">
-<a href="../pengisian-form/form-apd/formapd.html">Form APD</a>
-<a href="../pengisian-form/form-cuci-tangan/formcucitangan.html">Form Cuci Tangan</a>
-</div>
-</div>
+            <a href="assets/pengaturan/pengaturan.html" class="active">
+              <i class="fa-solid fa-gear"></i>
+              <span>Pengaturan</span>
+            </a>
+          </nav>
+        </div>
 
-<!-- LAPORAN -->
-<div class="menu-item">
-<a onclick="toggleMenu(this)">
-<i class="fa-solid fa-file-lines"></i>
-<span>Laporan Bulanan</span>
-<i class="fa-solid fa-chevron-down arrow"></i>
-</a>
+        <button class="logout" onclick="logout()">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          Logout
+        </button>
+      </aside>
 
-<div class="submenu">
-<a href="../laporan-bulanan/laporan-apd/laporanapd.html">Laporan APD</a>
-<a href="../laporan-bulanan/laporan-cuci-tangan/laporancucitangan.html">Laporan Cuci Tangan</a>
-</div>
-</div>
+      <div class="main">
+        <!-- = = = = = NAVBAR = = = = = -->
+        <header class="navbar-pro">
+          <div class="nav-left">
+            <button class="toggle-sidebar" onclick="toggleSidebar()">
+              <i class="fa-solid fa-bars"></i>
+            </button>
 
-<!-- MENU LAIN -->
-<a href="../akun-terdaftar/akunterdaftar.html">
-<i class="fa-solid fa-users"></i>
-<span>Akun Terdaftar</span>
-</a>
+            <div class="breadcrumb">
+              <span> Dashboard </span>
+              <i class="fa-solid fa-chevron-right"></i>
+              <span class="active"> Home </span>
+            </div>
+          </div>
 
-<a href="pengaturan.html" class="active">
-<i class="fa-solid fa-gear"></i>
-<span>Pengaturan</span>
-</a>
+          <div class="nav-center">
+            <div class="search-pro">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" placeholder="Search menu, data, users... (Ctrl + K)" />
+              <kbd>Ctrl K</kbd>
+            </div>
+          </div>
 
-</nav>
-</div>
+          <div class="nav-right">
+            <button class="mode-toggle" onclick="toggleTheme()">
+              <i class="fa-solid fa-moon"></i>
+            </button>
 
-<button class="logout" onclick="logout()">
-<i class="fa-solid fa-right-from-bracket"></i>
-Logout
-</button>
+            <div class="notif" onclick="toggleNotif()">
+              <i class="fa-regular fa-bell"></i>
+              <span class="badge-notif">3</span>
+              <div class="notif-dropdown">
+                <div class="notif-item">📊 Laporan APD selesai</div>
+                <div class="notif-item">👤 User baru terdaftar</div>
+                <div class="notif-item">🧼 Data Cuci Tangan masuk</div>
+              </div>
+            </div>
 
-</aside>
+            <div class="user-menu" onclick="toggleUserMenu()">
+              <img src="assets/img/pofoto.png" class="avatar" />
+              <span class="username"> Abanapo1 </span>
+              <i class="fa-solid fa-chevron-down arrow"></i>
+              <div class="user-dropdown">
+                <a><i class="fa-regular fa-user"></i> Profile</a>
+                <a><i class="fa-solid fa-gear"></i> Settings</a>
+                <a><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+              </div>
+            </div>
+          </div>
+        </header>
 
-<!-- ================= MAIN ================= -->
-<div class="main">
+        <!-- = = = = = Isi Kontent dashboard = = = = =-->
 
-<header class="navbar-pro">
+        <div class="admin-wrapper">
+          <div class="settings-main">
+            <h1 class="panel-title">
+              <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+              Pengaturan Tampilan
+              <p></p>
+            </h1>
 
-<div class="nav-left">
-<button onclick="toggleSidebar()">
-<i class="fa-solid fa-bars"></i>
-</button>
-</div>
+            <div class="settings-card">
+              <div class="card-header">
+                <i class="fa-solid fa-address-card" aria-hidden="true"></i>
+                <div>
+                  <h3>Kontrol Tombol Pendaftaran</h3>
+                  <p>Atur tombol pendaftaran yang tampil di halaman login.</p>
+                </div>
+              </div>
 
-<div class="nav-right">
+              <div class="setting-row">
+                <div class="setting-info">
+                  <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+                  <div>
+                    <h4>Pendaftaran User</h4>
+                    <span id="statusUser" class="status-badge"></span>
+                  </div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="userToggle" />
+                  <span class="slider"></span>
+                </label>
+              </div>
 
-<button onclick="toggleTheme()">
-<i class="fa-solid fa-moon"></i>
-</button>
+              <div class="setting-row">
+                <div class="setting-info">
+                  <i class="fa-solid fa-user-shield"></i>
+                  <div>
+                    <h4>Pendaftaran Admin</h4>
+                    <span id="statusAdmin" class="status-badge"></span>
+                  </div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="adminToggle" />
+                  <span class="slider"></span>
+                </label>
+              </div>
 
-<div class="user-menu">
-<img src="../img/pofoto.png" class="avatar" />
-<span>Abanapo1</span>
-</div>
+              <div class="save-area">
+                <button id="simpanStatus">
+                  <i class="fa-solid fa-circle-down" aria-hidden="true"></i>
+                  Simpan Pengaturan
+                </button>
+                <p>Perubahan akan langsung diterapkan di halaman login.</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-</div>
+        <div id="toast">Pengaturan berhasil disimpan</div>
+      </div>
+    </div>
 
-</header>
+    <!-- ================= MODAL ULTRA ================= -->
+    <div id="logoutModal" class="logout-modal">
+      <div class="logout-box">
+        <div class="icon">
+          <i class="fa-solid fa-right-from-bracket"></i>
+        </div>
 
-<!-- ================= CONTENT ================= -->
-<div class="admin-wrapper">
+        <h3>Yakin Logout dari Sistem?</h3>
+        <p>Session anda akan berakhir.</p>
 
-<div class="settings-main">
-<h1 class="panel-title">Pengaturan Tampilan</h1>
+        <div class="logout-actions">
+          <button class="btn-cancel" onclick="closeLogout()">Batal</button>
+          <button class="btn-logout" onclick="confirmLogout()">Logout</button>
+        </div>
+      </div>
+    </div>
 
-<div class="settings-card">
+    <!-- ================= LOADING SCREEN ================= -->
+    <div id="logoutLoader" class="logout-loader">
+      <div class="loader-box">
+        <div class="spinner"></div>
+        <p>Logging out...</p>
+      </div>
+    </div>
 
-<div class="setting-row">
-<h4>Pendaftaran User</h4>
-<input type="checkbox" id="userToggle">
-</div>
+    <!-- ================= SOUND ================= -->
+    <audio id="logoutSound" src="assets/img/audio/ttsMP3.com_VoiceText_2026-3-25_16-43-56.mp3"></audio>
 
-<div class="setting-row">
-<h4>Pendaftaran Admin</h4>
-<input type="checkbox" id="adminToggle">
-</div>
 
-<button id="simpanStatus">Simpan</button>
 
-</div>
-</div>
 
-</div>
+    
 
-</div>
-</div>
-
-<!-- JS -->
-<script src="pengaturan.js"></script>
-
-</body>
+    <script src="pengaturan.js"></script>
+    <script src="/assets/js/auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+  </body>
 </html>
