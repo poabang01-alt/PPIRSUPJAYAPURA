@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="id">
+
+
+
+<!-- = = = = = 
+ INI DASHBOARD UTAMA
+ = = = = = = = -->
+
+<!-- = = = = =  HEAD = = = = = -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akun Terdaftar</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/img/logo kemenkes.png">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;Lasi500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="akunterdaftar.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+</head>
+
+<body class="dark">
+
+<!-- = = = = = COMMAND PALETTE = = = = = -->
+<div class="command-palette" id="commandPalette">
+  <div class="cp-overlay" onclick="closePalette()"></div>
+  <div class="cp-box">
+    <div class="cp-header">
+      <i class="fa-solid fa-magnifying-glass"></i>+
+      <input id="cpInput" type="text" placeholder="Type a command or search...">
+      <span class="cp-kbd">Esc</span>
+    </div>
+
+    <ul class="cp-list" id="cpList">
+      <li data-action="dashboard"><i class="fa-solid fa-gauge"></i> Go to Dashboard</li>
+      <li data-action="observasi"><i class="fa-solid fa-database"></i> Data Observasi</li>
+      <li data-action="form-apd"><i class="fa-solid fa-file-pen"></i> Form APD</li>
+      <li data-action="laporan"><i class="fa-solid fa-file-lines"></i> Laporan Bulanan</li>
+      <li data-action="settings"><i class="fa-solid fa-gear"></i> Settings</li>
+      <li data-action="logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
+    </ul>
+  </div>
+</div>
+
+<div class="app"> 
+  <!-- = = = = = SIDEBAR = = = = = -->
+  <aside class="sidebar">
+    <div>
+      <div class="brand">
+        <a href="/index.html"><img src="/assets/img/logo kemenkes.png" alt="Logo"></a>
+        <div class="brand-text">
+          <strong>Kemenkes</strong><br>
+          <span>RS Jayapura</span>
+        </div>
+      </div>
+
+      <nav class="menu">
+        <a href="/index.html">
+          <i class="fa-solid fa-gauge"></i>
+             <span>
+              Dashboard
+            </span>
+        </a>
+
+  <!-- Menu Utama DATA OBSERVASI -->
+  <div class="menu-item">
+    <a onclick="toggleMenu(this)">
+      <i class="fa-solid fa-database"></i>
+      <span>Data Observasi</span>
+      <i class="fa-solid fa-chevron-down arrow"></i>
+    </a>
+    <div class="submenu">
+      <a href="/assets/data-observasi/kepatuhan-apd/kepatuhanapd.html">
+        Kepatuhan APD
+      </a>
+      <a href="/assets/data-observasi/cuci-tangan/cucitangan.html">
+        Cuci Tangan
+      </a>
+    </div>
+  </div>
+
+  <!-- Menu Utama PENGISIAN FORM -->
+  <div class="menu-item">
+    <a onclick="toggleMenu(this)">
+      <i class="fa-solid fa-file-pen"></i>
+      <span>Pengisian Form</span>
+      <i class="fa-solid fa-chevron-down arrow"></i>
+    </a>
+    <div class="submenu">
+      <a href="/assets/pengisian-form/form-apd/formapd.html">
+        Form APD
+      </a>
+      <a href="/assets/pengisian-form/form-cuci-tangan/formcucitangan.html">
+        Form Cuci Tangan
+      </a>
+    </div>
+  </div>
+
+  <!-- Menu Utama LAPORAN BULANAN -->
+  <div class="menu-item">
+    <a onclick="toggleMenu(this)">
+      <i class="fa-solid fa-file-lines"></i>
+      <span>Laporan Bulanan</span>
+      <i class="fa-solid fa-chevron-down arrow"></i>
+    </a>
+    <div class="submenu">
+      <a href="/assets/laporan-bulanan/laporan-apd/laporanapd.html">
+        Laporan APD
+      </a>
+      <a href="/assets/laporan-bulanan/laporan-cuci-tangan/laporancucitangan.html">
+        Laporan Cuci Tangan
+      </a>
+    </div>
+  </div>
+
+  <!-- MENU TUNGGAL -->
+  <a href="/assets/akun-terdaftar/akunterdaftar.html" class="active">
+    <i class="fa-solid fa-users"></i>
+    <span>Akun Terdaftar</span>
+  </a>
+
+  <a href="/assets/pengaturan/pengaturan.html">
+    <i class="fa-solid fa-gear"></i>
+    <span>Pengaturan</span>
+  </a>
+</nav>
+
+    </div>
+
+    <button class="logout" onclick="logout()">
+  <i class="fa-solid fa-right-from-bracket"></i>
+  Logout
+</button>
+
+
+  </aside>
+
+  <div class="main">
+    <!-- = = = = = NAVBAR = = = = = -->
+    <header class="navbar-pro">
+      <div class="nav-left">
+        <button class="toggle-sidebar" onclick="toggleSidebar()">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="breadcrumb">
+          <span>
+            Dashboard
+          </span>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span class="active">
+            Home
+          </span>
+        </div>
+      </div>
+
+      <div class="nav-center">
+        <div class="search-pro">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Search menu, data, users... (Ctrl + K)">
+          <kbd>Ctrl K</kbd>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <button class="mode-toggle" onclick="toggleTheme()">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <div class="notif" onclick="toggleNotif()">
+          <i class="fa-regular fa-bell"></i>
+          <span class="badge-notif">3</span>
+          <div class="notif-dropdown">
+            <div class="notif-item">📊 Laporan APD selesai</div>
+            <div class="notif-item">👤 User baru terdaftar</div>
+            <div class="notif-item">🧼 Data Cuci Tangan masuk</div>
+          </div>
+        </div>
+
+        <div class="user-menu" onclick="toggleUserMenu()">
+          <img src="/assets/img/pofoto.png" class="avatar">
+          <span class="username">
+            Abanapo1
+          </span>
+          <i class="fa-solid fa-chevron-down arrow"></i>
+          <div class="user-dropdown">
+            <a><i class="fa-regular fa-user"></i> Profile</a>
+            <a><i class="fa-solid fa-gear"></i> Settings</a>
+            <a><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+
+
+
+
+
+
+
+    <!-- = = = = = Isi Kontent dashboard = = = = =-->
+     <div id="toast" class="toast"></div>
+
+  <div class="akun-wrapper">
+
+  <div class="akun-header">
+
+  <div class="header-icon">
+    <i class="fa-solid fa-user-plus"></i>
+  </div>
+
+  <div class="header-text">
+    <h2>Akun Terdaftar</h2>
+    <p>Daftar akun berdasarkan kategori pengguna.</p>
+  </div>
+
+</div>
+
+  <!-- CARD TOTAL -->
+  <div class="akun-summary">
+
+    <div class="summary-card active" id="btnPegawai">
+  <i class="fa fa-users"></i>
+
+  <div>
+    <span>Total Pegawai :</span>
+    <h3 id="totalPegawai">0</h3>
+
+    <div class="mini-progress">
+      <div class="mini-progress-bar"></div>
+    </div>
+
+  </div>
+</div>
+
+    <div class="summary-card" id="btnAdmin">
+  <i class="fa fa-user-shield"></i>
+
+  <div>
+    <span>Total Admin :</span>
+    <h3 id="totalAdmin">0</h3>
+
+    <div class="mini-progress">
+      <div class="mini-progress-bar"></div>
+    </div>
+
+  </div>
+</div>
+
+    <div class="search-box">
+  <input type="text" id="searchInput" placeholder="Cari nama, jabatan, ruangan">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</div>
+
+
+
+    <div class="generate-wrapper">
+
+  <i class="fa-solid fa-database generate-icon"></i>
+
+  <select id="generateSelect">
+    <option value="">Generate Data</option>
+    <option value="50">50 Data</option>
+    <option value="100">100 Data</option>
+    <option value="300">300 Data</option>
+    <option value="500">500 Data</option>
+  </select>
+
+</div>
+
+
+
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>User Nama</th>
+          <th>Nama Lengkap</th>
+          <th>Jabatan</th>
+          <th>Ruangan</th>
+          <th>Role</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="userTable"></tbody>
+    </table>
+
+    <tbody id="userTable"></tbody>
+  </div>
+
+  <div id="tableSkeleton" class="table-skeleton"></div>
+
+
+  <!-- PAGINATION -->
+  <div class="pagination" id="pagination"></div>
+
+</div>
+
+
+<!-- MODAL EDIT -->
+<div class="modal" id="editModal">
+  <div class="modal-content">
+    <h3>Edit AKun</h3>
+    <input type="hidden" id="editIndex">
+    <input type="text" id="editUsername" placeholder="Username">
+
+    <input type="text" id="editNama" placeholder="Nama Lengkap">
+    <label>Foto Avatar</label>
+<input type="file" id="editAvatar" accept="image/*">
+
+    <input type="text" id="editJabatan" placeholder="Jabatan">
+    <input type="text" id="editRuangan" placeholder="Ruangan">
+
+    <div class="modal-action">
+      <button onclick="saveEdit()">Simpan</button>
+      <button onclick="closeModal()" class="btn-cancel">Batal</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DELETE -->
+<div class="modal" id="deleteModal">
+  <div class="modal-content delete-box">
+    
+    <div class="delete-header">
+      <div class="warning-icon">
+        <i class="fa fa-exclamation"></i>
+      </div>
+      <h3>Hapus User</h3>
+    </div>
+
+    <input type="hidden" id="deleteIndex">
+
+    <p id="deleteText" class="delete-text">
+      Apakah Anda yakin ingin menghapus user ini?
+    </p>
+
+    <div class="modal-action">
+      <button onclick="confirmDelete()" class="btn-delete">Hapus</button>
+      <button onclick="closeDeleteModal(true)" class="btn-cancel">Batal</button>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+</div>
+
+
+
+
+
+
+<!-- ================= MODAL ULTRA ================= -->
+<div id="logoutModal" class="logout-modal">
+
+  <div class="logout-box">
+
+    <div class="icon">
+      <i class="fa-solid fa-right-from-bracket"></i>
+    </div>
+
+    <h3>Yakin Logout dari Sistem?</h3>
+    <p>Session anda akan berakhir.</p>
+
+    <div class="logout-actions">
+      <button class="btn-cancel" onclick="closeLogout()">Batal</button>
+      <button class="btn-logout" onclick="confirmLogout()">
+        Logout
+      </button>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= LOADING SCREEN ================= -->
+<div id="logoutLoader" class="logout-loader">
+
+  <div class="loader-box">
+
+    <div class="spinner"></div>
+    <p>Logging out...</p>
+
+  </div>
+
+</div>
+
+
+<!-- ================= SOUND ================= -->
+<audio id="logoutSound" src="/assets/img/audio/ttsMP3.com_VoiceText_2026-3-25_16-43-56.mp3"></audio>
+
+
+
+<script src="akunterdaftar.js"></script>
+<script src="/assets/js/auth.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+</body>
+</html>

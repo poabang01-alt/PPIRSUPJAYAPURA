@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LOGIN SIKAPTAN</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/img/logo kemenkes.png" />
+
+    <link rel="stylesheet" href="login.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  </head>
+
+  <body>
+    <div class="bg"></div>
+    <div class="particles"></div>
+    <div class="login-wrapper">
+      <div class="login-card">
+        <div class="logo">
+          <img src="/assets/img/logoRSUPjayapura.png" />
+        </div>
+
+        <h2>KEMENKES RSUP Jayapura</h2>
+        <h3>SIKAPTAN</h3>
+        <p class="subtitle">Sistem Kepatuhan APD & Hand Hygiene</p>
+
+        <form id="loginForm">
+          <div class="input-group">
+            <i class="fa fa-user"></i>
+            <input type="text" id="username" required />
+            <label>Masukkan username</label>
+          </div>
+
+          <div class="input-group">
+            <i class="fa fa-lock"></i>
+            <input type="password" id="password" required />
+            <label>Masukkan password</label>
+            <span class="toggle">
+              <i class="fa fa-eye"></i>
+            </span>
+          </div>
+
+          <button class="login-btn">
+            <span class="text"> <i class="fa fa-lock"></i> Login </span>
+            <span class="spinner"></span>
+          </button>
+        </form>
+
+        <div class="warning">⚠ Semua pendaftaran akun dinonaktifkan oleh admin.</div>
+
+        <div class="footer">© 2026 RSUP Jayapura – Kementerian Kesehatan RI</div>
+      </div>
+    </div>
+
+    <script src="login.js"></script>
+    <script src="/assets/js/auth.js"></script>
+  </body>
+</html>

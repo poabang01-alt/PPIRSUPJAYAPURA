@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="id">
+
+
+
+<!-- = = = = = 
+ INI DASHBOARD UTAMA
+ = = = = = = = -->
+
+<!-- = = = = =  HEAD = = = = = -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Form APD</title>
+
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/img/logo kemenkes.png">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;Lasi500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="formapd.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="dark">
+
+<!-- = = = = = COMMAND PALETTE = = = = = -->
+<div class="command-palette" id="commandPalette">
+  <div class="cp-overlay" onclick="closePalette()"></div>
+  <div class="cp-box">
+    <div class="cp-header">
+      <i class="fa-solid fa-magnifying-glass"></i>+
+      <input id="cpInput" type="text" placeholder="Type a command or search...">
+      <span class="cp-kbd">Esc</span>
+    </div>
+
+    <ul class="cp-list" id="cpList">
+      <li data-action="dashboard"><i class="fa-solid fa-gauge"></i> Go to Dashboard</li>
+      <li data-action="observasi"><i class="fa-solid fa-database"></i> Data Observasi</li>
+      <li data-action="form-apd"><i class="fa-solid fa-file-pen"></i> Form APD</li>
+      <li data-action="laporan"><i class="fa-solid fa-file-lines"></i> Laporan Bulanan</li>
+      <li data-action="settings"><i class="fa-solid fa-gear"></i> Settings</li>
+      <li data-action="logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="app"> 
+
+  <!-- = = = = = SIDEBAR = = = = = -->
+  <aside class="sidebar">
+    <div>
+      <div class="brand">
+        <a href="/index.html"><img src="/assets/img/logo kemenkes.png" alt="Logo"></a>
+        <div class="brand-text">
+          <strong>Kemenkes</strong><br>
+          <span>RS Jayapura</span>
+        </div>
+      </div>
+
+      <nav class="menu">
+        <a href="/index.html">
+          <i class="fa-solid fa-gauge"></i>
+             <span>
+              Dashboard
+            </span>
+        </a>
+
+  <!-- Menu Utama DATA OBSERVASI -->
+  <div class="menu-item">
+    <a onclick="toggleMenu(this)">
+      <i class="fa-solid fa-database"></i>
+      <span>Data Observasi</span>
+      <i class="fa-solid fa-chevron-down arrow"></i>
+    </a>
+    <div class="submenu">
+      <a href="/assets/data-observasi/kepatuhan-apd/kepatuhanapd.html">
+        Kepatuhan APD
+      </a>
+      <a href="/assets/data-observasi/cuci-tangan/cucitangan.html">
+        Cuci Tangan
+      </a>
+    </div>
+  </div>
+
+  <!-- Menu Utama PENGISIAN FORM -->
+  <div class="menu-item">
+    <a onclick="toggleMenu(this)">
+      <i class="fa-solid fa-file-pen"></i>
+      <span>Pengisian Form</span>
+      <i class="fa-solid fa-chevron-down arrow"></i>
+    </a>
+    <div class="submenu">
+      <a href="/assets/pengisian-form/form-apd/formapd.html" class="active">
+        Form APD
+      </a>
+      <a href="/assets/pengisian-form/form-cuci-tangan/formcucitangan.html">
+        Form Cuci Tangan
+      </a>
+    </div>
+  </div>
+
+  <!-- Menu Utama LAPORAN BULANAN -->
+  <div class="menu-item">
+    <a onclick="toggleMenu(this)">
+      <i class="fa-solid fa-file-lines"></i>
+      <span>Laporan Bulanan</span>
+      <i class="fa-solid fa-chevron-down arrow"></i>
+    </a>
+    <div class="submenu">
+      <a href="/assets/laporan-bulanan/laporan-apd/laporanapd.html">
+        Laporan APD
+      </a>
+      <a href="/assets/laporan-bulanan/laporan-cuci-tangan/laporancucitangan.html">
+        Laporan Cuci Tangan
+      </a>
+    </div>
+  </div>
+
+  <!-- MENU TUNGGAL -->
+  <a href="/assets/akun-terdaftar/akunterdaftar.html">
+    <i class="fa-solid fa-users"></i>
+    <span>Akun Terdaftar</span>
+  </a>
+
+  <a href="/assets/pengaturan/pengaturan.html">
+    <i class="fa-solid fa-gear"></i>
+    <span>Pengaturan</span>
+  </a>
+</nav>
+
+    </div>
+
+    <button class="logout" onclick="logout()">
+      <i class="fa-solid fa-right-from-bracket"></i>
+      Logout    
+    </button>
+  </aside>
+
+  
+
+  <div class="main">
+
+    <!-- = = = = = NAVBAR = = = = = -->
+    <header class="navbar-pro">
+      <div class="nav-left">
+        <button class="toggle-sidebar" onclick="toggleSidebar()">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="breadcrumb">
+          <span>
+            Dashboard
+          </span>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span class="active">
+            Home
+          </span>
+        </div>
+      </div>
+
+      <div class="nav-center">
+        <div class="search-pro">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Search menu, data, users... (Ctrl + K)">
+          <kbd>Ctrl K</kbd>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <button class="mode-toggle" onclick="toggleTheme()">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <div class="notif" onclick="toggleNotif()">
+          <i class="fa-regular fa-bell"></i>
+          <span class="badge-notif">3</span>
+          <div class="notif-dropdown">
+            <div class="notif-item">📊 Laporan APD selesai</div>
+            <div class="notif-item">👤 User baru terdaftar</div>
+            <div class="notif-item">🧼 Data Cuci Tangan masuk</div>
+          </div>
+        </div>
+
+        <div class="user-menu" onclick="toggleUserMenu()">
+          <img src="/assets/img/pofoto.png" class="avatar">
+          <span class="username">
+            Abanapo1
+          </span>
+          <i class="fa-solid fa-chevron-down arrow"></i>
+          <div class="user-dropdown">
+            <a><i class="fa-regular fa-user"></i> Profile</a>
+            <a><i class="fa-solid fa-gear"></i> Settings</a>
+            <a><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+
+    <!-- = = = = = Isi Kontent dashboard = = = = =-->
+     <div class="container">
+
+  <!-- ================= HEADER ================= -->
+  <div class="page-header">
+    <div class="header-title">
+      <img src="/assets/img/setting.png">
+      <div>
+        <h1>Pengaturan Form Observasi APD</h1>
+        <p>
+          Atur field (kolom) yang muncul di halaman Form Observasi.
+          Anda dapat menambah, mengedit, atau menghapus.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CARD ================= -->
+  <div class="card">
+    <div class="card-header">
+      <h3>Daftar Field Observasi</h3>
+
+      <button class="btn-primary" id="openModal">
+        <i class="fa-solid fa-square-plus"></i>
+        Tambah Field
+      </button>
+    </div>
+
+    <!-- ================= TABLE ================= -->
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama Field</th>
+            <th>Label Tampilan</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="fieldTable">
+          <!-- Data di-generate oleh JavaScript -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- ================= MODAL TAMBAH / EDIT FIELD ================= -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box" role="dialog" aria-modal="true">
+
+    <div class="modal-header">
+      <h3 id="modalTitle">Tambah Field Baru</h3>
+      <span class="modal-close" id="closeModal" aria-label="Tutup">&times;</span>
+    </div>
+
+    <div class="modal-body">
+
+  <!-- ALERT -->
+  <div class="modal-alert" id="modalAlert">
+    Nama field dan label wajib diisi!
+  </div>
+
+  <!-- FIELD NAME -->
+  <div class="form-group">
+    <input
+      type="text"
+      id="fieldName"
+      class="input-blur"
+      placeholder="Nama Field"
+      autocomplete="off"
+    >
+    <small class="form-hint">
+      contoh: <span class="italic">masker_wajib</span>
+    </small>
+  </div>
+
+  <!-- FIELD LABEL -->
+  <div class="form-group">
+    <input
+      type="text"
+      id="fieldLabel"
+      class="input-blur"
+      placeholder="Label Tampilan"
+      autocomplete="off"
+    >
+    <small class="form-hint">
+      contoh: Masker Wajib
+    </small>
+  </div>
+
+  <button class="btn-submit" id="saveField">
+    Simpan
+  </button>
+
+</div>
+
+
+
+  </div>
+</div>
+
+<!-- ================= MODAL KONFIRMASI HAPUS ================= -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box" role="dialog" aria-modal="true">
+
+    <div class="confirm-icon">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+    </div>
+
+    <h3>Yakin ingin menghapus field ini?</h3>
+    <p>Data yang dihapus tidak dapat dikembalikan.</p>
+
+    <div class="confirm-action">
+      <button class="btn-cancel" id="cancelDelete">
+        Batal
+      </button>
+      <button class="btn-danger" id="confirmDelete">
+        Hapus
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================= TOAST ================= -->
+<div class="toast" id="toast">
+  <i class="fa-solid fa-circle-check"></i>
+  <span id="toastMessage">Berhasil</span>
+</div>
+
+
+
+   
+    </div>
+
+  </div>
+
+
+
+
+<!-- ================= MODAL ULTRA ================= -->
+<div id="logoutModal" class="logout-modal">
+  <div class="logout-box">
+    <div class="icon">
+      <i class="fa-solid fa-right-from-bracket"></i>
+    </div>
+    <h3>
+      Yakin Logout dari Sistem?
+    </h3>
+    <p>
+      Session anda akan berakhir.
+    </p>
+    <div class="logout-actions">
+      <button class="btn-cancel" onclick="closeLogout()">
+        Batal
+      </button>
+      <button class="btn-logout" onclick="confirmLogout()">
+        Logout
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ================= LOADING SCREEN ================= -->
+<div id="logoutLoader" class="logout-loader">
+  <div class="loader-box">
+    <div class="spinner"></div>
+    <p>Logging out...</p>
+  </div>
+</div>
+
+<!-- ================= SOUND ================= -->
+<audio id="logoutSound" src="/assets/img/audio/ttsMP3.com_VoiceText_2026-3-25_16-43-56.mp3"></audio>  
+
+
+<script src="formapd.js"></script>
+<script src="/assets/js/auth.js"></script>
+</body>
+</html>

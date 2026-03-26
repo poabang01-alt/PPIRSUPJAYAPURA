@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<!-- = = = = =HEAD = = = = = -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Kepatuhan APD </title>
+
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/img/logo kemenkes.png">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="kepatuhanapd.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+
+<body class="dark sidebar-open">
+
+
+<!-- = = = = = COMMAND PALETTE = = = = = -->
+<div class="command-palette" id="commandPalette">
+  <div class="cp-overlay" onclick="closePalette()"></div>
+  <div class="cp-box">
+    <div class="cp-header">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input id="cpInput" type="text" placeholder="Type a command or search...">
+      <span class="cp-kbd">Esc</span>
+    </div>
+
+    <ul class="cp-list" id="cpList">
+      <li data-action="dashboard"><i class="fa-solid fa-gauge"></i> Go to Dashboard</li>
+      <li data-action="observasi"><i class="fa-solid fa-database"></i> Data Observasi</li>
+      <li data-action="form-apd"><i class="fa-solid fa-file-pen"></i> Form APD</li>
+      <li data-action="laporan"><i class="fa-solid fa-file-lines"></i> Laporan Bulanan</li>
+      <li data-action="settings"><i class="fa-solid fa-gear"></i> Settings</li>
+      <li data-action="logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
+    </ul>
+  </div>
+</div>
+
+
+
+<div class="app">
+
+
+  <!-- = = = = = SIDEBAR = = = = = -->
+  <aside class="sidebar">
+<div>
+      <div class="brand">
+        <a href="/index.html"><img src="/assets/img/logo kemenkes.png" alt="Logo"></a>
+        <div class="brand-text">
+          <strong>Kemenkes</strong><br>
+          <span>RS Jayapura</span>
+        </div>
+      </div>
+
+      <nav class="menu">
+  <a href="/index.html">
+    <i class="fa-solid fa-gauge"></i>
+    <span>Dashboard</span>
+  </a>
+
+
+  <!-- Menu Utma DATA OBSERVASI  -->
+  <div class="menu-item">
+    <a onclick="toggleMenu(this)">
+      <i class="fa-solid fa-database"></i>
+      <span>Data Observasi</span>
+      <i class="fa-solid fa-chevron-down arrow"></i>
+    </a>
+    <div class="submenu">
+      <a href="/assets/data-observasi/kepatuhan-apd/kepatuhanapd.html" class="active">
+        Kepatuhan APD
+      </a>
+      <a href="/assets/data-observasi/cuci-tangan/cucitangan.html">
+        Cuci Tangan
+      </a>
+    </div>
+  </div>
+
+  <!-- Menu Utama PENGISIAN FORM -->
+  <div class="menu-item">
+    <a onclick="toggleMenu(this)">
+      <i class="fa-solid fa-file-pen"></i>
+      <span>Pengisian Form</span>
+      <i class="fa-solid fa-chevron-down arrow"></i>
+    </a>
+    <div class="submenu">
+      <a href="/assets/pengisian-form/form-apd/formapd.html">
+        Form APD
+      </a>
+      <a href="/assets/pengisian-form/form-cuci-tangan/formcucitangan.html">
+        Form Cuci Tangan
+      </a>
+    </div>
+  </div>
+
+  <!-- Menu Utama LAPORAN BULANAN -->
+  <div class="menu-item">
+    <a onclick="toggleMenu(this)">
+      <i class="fa-solid fa-file-lines"></i>
+      <span>Laporan Bulanan</span>
+      <i class="fa-solid fa-chevron-down arrow"></i>
+    </a>
+    <div class="submenu">
+      <a href="/assets/laporan-bulanan/laporan-apd/laporanapd.html">
+        Laporan APD
+      </a>
+      <a href="/assets/laporan-bulanan/laporan-cuci-tangan/laporancucitangan.html">
+        Laporan Cuci Tangan
+      </a>
+    </div>
+  </div>
+
+  <!-- MENU TUNGGAL -->
+  <a href="/assets/akun-terdaftar/akunterdaftar.html">
+    <i class="fa-solid fa-users"></i>
+    <span>Akun Terdaftar</span>
+  </a>
+
+  <a href="/assets/pengaturan/pengaturan.html">
+    <i class="fa-solid fa-gear"></i>
+    <span>Pengaturan</span>
+  </a>
+</nav>
+</div>
+
+    <button class="logout" onclick="logout()">
+      <i class="fa-solid fa-right-from-bracket"></i>
+      Logout    
+    </button>
+  </aside>
+
+
+
+  <!-- MAIN -->
+  <div class="main-content">
+
+
+    <!-- NAVBAR -->
+    <header class="navbar-pro">
+      <div class="nav-left">
+        <button class="toggle-sidebar">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="breadcrumb">
+          <span>Dashboard</span>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span class="active">Home</span>
+        </div>
+      </div>
+
+      <div class="nav-center">
+        <div class="search-pro">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Search menu, data, users... (Ctrl + K)">
+          <kbd>Ctrl K</kbd>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <button class="mode-toggle" onclick="toggleTheme()">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <div class="notif" onclick="toggleNotif()">
+          <i class="fa-regular fa-bell"></i>
+          <span class="badge-notif">3</span>
+          <div class="notif-dropdown">
+            <div class="notif-item">📊 Laporan APD selesai</div>
+            <div class="notif-item">👤 User baru terdaftar</div>
+            <div class="notif-item">🧼 Data Cuci Tangan masuk</div>
+          </div>
+        </div>
+
+        <div class="user-menu" onclick="toggleUserMenu()">
+          <img src="/assets/img/pofoto.png" class="avatar">
+          <span class="username">Abanapo1</span>
+          <i class="fa-solid fa-chevron-down arrow"></i>
+          <div class="user-dropdown">
+            <a><i class="fa-regular fa-user"></i> Profile</a>
+            <a><i class="fa-solid fa-gear"></i> Settings</a>
+            <a><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+
+  <div class="page-content">
+    <!-- = = = = = Isi Kontent  = = = = =-->
+     <div class="card">
+  <!-- Header -->
+  <div class="card-header">
+    <div class="header-left">
+      <img src="/assets/img/Data Periode Observasi APD.png">
+      <h2>Data Periode Observasi APD</h2>
+    </div>
+  </div>
+
+  <!-- Filter -->
+  <div class="filter-bar">
+    
+    <div class="filter-left">
+      <label>Pilih Bulan & Tahun</label>
+      <select id="bulan">
+  <option value="">Pilih Bulan</option>
+  <option value="01">Januari</option>
+  <option value="02">Februari</option>
+  <option value="03">Maret</option>
+  <option value="04">April</option>
+  <option value="05">Mei</option>
+  <option value="06">Juni</option>
+  <option value="07">Juli</option>
+  <option value="08">Agustus</option>
+  <option value="09">September</option>
+  <option value="10">Oktober</option>
+  <option value="11">November</option>
+  <option value="12">Desember</option>
+</select>
+
+      <input type="number" id="tahun" value="2025">
+    </div>
+
+    <div class="filter-right">
+      <button class="btn-outline" id="btnTambah"><i class="fa-solid fa-square-plus"></i> Periode Baru</button>
+      <button class="btn-primary"><i class="fa-solid fa-door-open"></i> Kelola Ruangan</button>
+    </div>
+  </div>
+
+  <!-- Checkbox Grid -->
+  <div class="checkbox-grid">
+    <label><input type="checkbox"> 1. CATHLAB</label>
+    <label><input type="checkbox"> 2. CSSD</label>
+    <label><input type="checkbox"> 3. ENTOMOLOG</label>
+    <label><input type="checkbox"> 4. EPIDEMIOLOG</label>
+
+    <label><input type="checkbox"> 5. FARMASI</label>
+    <label><input type="checkbox"> 6. GIZI</label>
+    <label><input type="checkbox"> 7. HAEMODIALISA</label>
+    <label><input type="checkbox"> 8. HCU</label>
+
+    <label><input type="checkbox"> 9.  IBS</label>
+    <label><input type="checkbox"> 10. ICU/PICU</label>
+    <label><input type="checkbox"> 11. ICVU</label>
+    <label><input type="checkbox"> 12. IGD</label>
+
+    <label><input type="checkbox"> 13. IPSRS</label>
+    <label><input type="checkbox"> 14. K3</label>
+    <label><input type="checkbox"> 15. KESLING</label>
+    <label><input type="checkbox"> 16. LAUNDRY/BINATU</label>
+
+    <label><input type="checkbox"> 17. LAUNDRY/BINATU</label>
+    <label><input type="checkbox"> 18. NICU/PERINA</label>
+    <label><input type="checkbox"> 19. OK CITO</label>
+    <label><input type="checkbox"> 20. PEMULASARAN JENAZAH</label>
+
+    <label><input type="checkbox"> 21. POLI ANAK</label>
+    <label><input type="checkbox"> 22. POLI BEDAH</label>
+    <label><input type="checkbox"> 23. POLI DOTS</label>
+    <label><input type="checkbox"> 24. POLI GIGI</label>
+
+    <label><input type="checkbox"> 25. POLI JANTUNG</label>
+    <label><input type="checkbox"> 26. POLI MATA</label>
+    <label><input type="checkbox"> 27. POLI OBGYN</label>
+    <label><input type="checkbox"> 28. POLI PENYAKIT DALAM</label>
+
+    <label><input type="checkbox"> 29. POLI SYARAF</label>
+    <label><input type="checkbox"> 30. POLI VCT</label>
+    <label><input type="checkbox"> 31. RADIOLOGI</label>
+    <label><input type="checkbox"> 32. RANAP ANAK</label>
+
+    <label><input type="checkbox"> 33. RANAP DEWASA KRIS</label>
+    <label><input type="checkbox"> 34. RANAP OBGYN</label>
+    <label><input type="checkbox"> 35. RANAP PIE</label>
+    <label><input type="checkbox"> 36. VVIP</label>
+  </div>
+
+  <!-- Footer -->
+<div class="card">
+
+  <div class="footer">
+  <select id="periodeSelect">
+    <option value="">Pilih Periode</option>
+  </select>
+
+  <button id="btnShowData" class="btn-primary">
+    <i class="fa-solid fa-eye"></i> Tampilkan Data
+  </button>
+</div>
+
+
+  
+
+  <!-- TABEL MUNCUL DI SINI -->
+<div class="alert-overlay" id="alertOverlay"></div>
+
+<div class="alert-modal" id="alertModal">
+  <div class="alert-icon" id="alertIcon">
+    <i class="fa-solid fa-circle-question"></i>
+  </div>
+
+  <h3 id="alertTitle">Konfirmasi</h3>
+  <p id="alertMessage">Apakah Anda yakin?</p>
+
+  <div class="alert-actions">
+    <button class="btn-secondary" id="alertCancel">Batal</button>
+    <button class="btn-primary" id="alertConfirm">Ya, Lanjutkan</button>
+  </div>
+</div>
+
+  <div id="periodeContainer">
+    
+  </div>
+  
+
+</div> 
+
+
+<!-- Overlay -->
+<div class="modal-overlay" id="modalOverlay"></div>
+
+<!-- Modal Warning -->
+<div class="modal" id="modalWarning">
+  <div class="modal-icon danger">
+    <i class="fa-solid fa-exclamation"></i>
+  </div>
+  <h3>Lengkapi Data</h3>
+  <p>Pilih bulan, tahun, dan ruangan<br>terlebih dahulu.</p>
+  <button class="btn-primary" onclick="closeModal()">Oke</button>
+</div>
+
+
+<!-- Modal Confirm -->
+<div class="modal" id="modalConfirm">
+  <div class="modal-icon success">
+    <i class="fa-solid fa-question"></i>
+  </div>
+  <h3>Aktifkan Kembali ?</h3>
+  <p>
+    Masih ada periode observasi aktif.<br>
+    Tutup dan buat periode baru?
+  </p>
+  <div class="modal-actions">
+    <button class="btn-primary" id="btnAktifkan">Ya Aktifkan</button>
+    <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+  </div>
+</div>
+
+<div class="toast" id="toastSuccess">
+  <i class="fa-solid fa-circle-check"></i>
+  <span id="toastMessage"></span>
+</div>
+
+
+<!-- KELOLA RUANGAN -->
+<div class="modal-overlay" id="modalRuanganOverlay"></div>
+
+<div class="modal modal-ruangan" id="modalRuangan">
+  <div class="modal-header">
+  <h3><i class="fa-solid fa-warehouse"></i> Kelola Ruangan</h3>
+  <i class="fa-solid fa-xmark modal-close" onclick="closeKelolaRuangan()"></i>
+</div>
+
+  <div class="ruangan-form">
+    <input type="text" id="inputRuangan" placeholder="NAMA RUANGAN">
+    <button class="btn-primary" id="btnTambahRuangan">
+      <i class="fa-solid fa-plus"></i> Tambah
+    </button>
+  </div>
+
+  <table class="ruangan-table">
+    
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Nama Ruangan</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody id="ruanganList"></tbody>
+  </table>
+
+  <button class="btn-secondary" onclick="closeKelolaRuangan()">Tutup</button>
+</div>
+    
+
+     </div>
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- ================= MODAL ULTRA ================= -->
+<div id="logoutModal" class="logout-modal">
+  <div class="logout-box">
+    <div class="icon">
+      <i class="fa-solid fa-right-from-bracket"></i>
+    </div>
+    <h3>
+      Yakin Logout dari Sistem?
+    </h3>
+    <p>
+      Session anda akan berakhir.
+    </p>
+    <div class="logout-actions">
+      <button class="btn-cancel" onclick="closeLogout()">
+        Batal
+      </button>
+      <button class="btn-logout" onclick="confirmLogout()">
+        Logout
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ================= LOADING SCREEN ================= -->
+<div id="logoutLoader" class="logout-loader">
+  <div class="loader-box">
+    <div class="spinner"></div>
+    <p>Logging out...</p>
+  </div>
+</div>
+
+<!-- ================= SOUND ================= -->
+<audio id="logoutSound" src="/assets/img/audio/ttsMP3.com_VoiceText_2026-3-25_16-43-56.mp3"></audio>  
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="kepatuhanapd.js"></script>
+<script src="/assets/js/auth.js"></script>
+</body>
+</html>
