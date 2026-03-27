@@ -15,14 +15,22 @@ body {
 }
 
 /* BACKGROUND */
+/* BACKGROUND */
 .bg {
   position: fixed;
-  width: 100%;
-  height: 100%;
-  background: url("../../img/gedungRSUPjayapura.webp") center/cover no-repeat;
+  inset: 0;
+  background: url("assets/img/gedungRSUPjayapura.webp") center/cover no-repeat;
   filter: blur(2px) brightness(0.7);
   transform: scale(1.1);
   animation: bgZoom 30s infinite alternate;
+  z-index: -1;
+}
+
+.bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
 }
 
 @keyframes bgZoom {
