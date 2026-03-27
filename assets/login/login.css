@@ -17,20 +17,24 @@ body {
 /* BACKGROUND */
 .bg {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background: url("../img/gedungRSUPjayapura.webp")
-  filter: blur(2px) brightness(0.7);
+  background: url("../img/gedungRSUPjayapura.webp") center center / cover no-repeat;
+  filter: blur(3px) brightness(0.6);
   transform: scale(1.1);
+  z-index: -1;
   animation: bgZoom 30s infinite alternate;
 }
 
+/* ANIMASI ZOOM HALUS */
 @keyframes bgZoom {
-  from {
+  0% {
     transform: scale(1.1);
   }
-  to {
-    transform: scale(1.25);
+  100% {
+    transform: scale(1.2);
   }
 }
 
