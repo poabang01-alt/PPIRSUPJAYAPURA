@@ -14,7 +14,7 @@
   <title>Laporan Cuci Tangan</title>
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/assets/img/logo kemenkes.png">
+   <link rel="icon" type="image/png" href="../../img/logo kemenkes.png">
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;Lasi500;600;700&display=swap" rel="stylesheet">
@@ -58,7 +58,7 @@
   <aside class="sidebar">
     <div>
       <div class="brand">
-        <a href="/index.html"><img src="/assets/img/logo kemenkes.png" alt="Logo"></a>
+        <a href="/index.html"><img src="../../img/logo kemenkes.png" alt="Logo"></a>
         <div class="brand-text">
           <strong>Kemenkes</strong><br>
           <span>RS Jayapura</span>
@@ -81,10 +81,10 @@
       <i class="fa-solid fa-chevron-down arrow"></i>
     </a>
     <div class="submenu">
-      <a href="/assets/data-observasi/kepatuhan-apd/kepatuhanapd.html">
+      <a href="../../data-observasi/kepatuhan-apd/kepatuhanapd.html">
         Kepatuhan APD
       </a>
-      <a href="/assets/data-observasi/cuci-tangan/cucitangan.html">
+      <a href="../../data-observasi/cuci-tangan/cucitangan.html">
         Cuci Tangan
       </a>
     </div>
@@ -98,10 +98,10 @@
       <i class="fa-solid fa-chevron-down arrow"></i>
     </a>
     <div class="submenu">
-      <a href="/assets/pengisian-form/form-apd/formapd.html" >
+      <a href="../../pengisian-form/form-apd/formapd.html" >
         Form APD
       </a>
-      <a href="/assets/pengisian-form/form-cuci-tangan/formcucitangan.html">
+      <a href="../../pengisian-form/form-cuci-tangan/formcucitangan.html">
         Form Cuci Tangan
       </a>
     </div>
@@ -115,22 +115,22 @@
       <i class="fa-solid fa-chevron-down arrow"></i>
     </a>
     <div class="submenu">
-      <a href="/assets/laporan-bulanan/laporan-apd/laporanapd.html" >
+      <a href="../../laporan-bulanan/laporan-apd/laporanapd.html" >
         Laporan APD
       </a>
-      <a href="/assets/laporan-bulanan/laporan-cuci-tangan/laporancucitangan.html" class="active">
+      <a href="../../laporan-bulanan/laporan-cuci-tangan/laporancucitangan.html" class="active">
         Laporan Cuci Tangan
       </a>
     </div>
   </div>
 
   <!-- MENU TUNGGAL -->
-  <a href="/assets/akun-terdaftar/akunterdaftar.html">
+  <a href="../../akun-terdaftar/akunterdaftar.html">
     <i class="fa-solid fa-users"></i>
     <span>Akun Terdaftar</span>
   </a>
 
-  <a href="/assets/pengaturan/pengaturan.html">
+  <a href="../../pengaturan/pengaturan.html">
     <i class="fa-solid fa-gear"></i>
     <span>Pengaturan</span>
   </a>
@@ -187,7 +187,7 @@
         </div>
 
         <div class="user-menu" onclick="toggleUserMenu()">
-          <img src="/assets/img/pofoto.png" class="avatar">
+          <img src="../../img/pofoto.png" class="avatar">
           <span class="username">
             Abanapo1
           </span>
@@ -212,7 +212,7 @@
      <div class="laporan-container">
   <div class="laporan-header">
     <h2> 
-       <img src="/assets/img/cucitangan.png">
+       <img src="../../img/cucitangan.png">
       Laporan Kepatuhan Cuci Tangan Bulanan
     </h2>
   </div>
@@ -282,11 +282,11 @@
     </select>
 
     <button onclick="tampilkanLaporan()"> 
-      <img src="/assets/img/mata.png">
+      <img src="../../img/mata.png">
        Tampilkan
       </button>
     <button onclick="resetFilter()">
-      <img src="/assets/img/reset.png">
+      <img src="../../img/reset.png">
        Reset</button>
   </div>
 
@@ -295,7 +295,7 @@
   <div class="alert-modal">
     <span class="alert-close" onclick="tutupAlert()">X</span>
     <div class="alert-icon">
-      <img src="/assets/img/alertX.png">
+      <img src="../../img/alertX.png">
     </div>
     <h3>Filter Belum Lengkap</h3>
     <p>Mohon pilih <b>Bulan</b>, <b>Tahun</b>, dan <b>Ruangan</b> terlebih dahulu.</p>
@@ -307,7 +307,7 @@
 <div id="successOverlay" class="alert-overlay">
   <div class="alert-modal success-modal">
     <span class="alert-close" onclick="tutupAlert()">X</span>
-    <div class="alert-icon"><img src="/assets/img/good.png"></div>
+    <div class="alert-icon"><img src="../../img/good.png"></div>
     <h3>Filter Berhasil Diterapkan</h3>
     <div class="success-info">
       <p><b>Bulan</b> : <span id="infoBulan"></span></p>
@@ -346,20 +346,20 @@
   <!-- INFO BOX -->
   <div class="summary-grid">
   <div class="summary-card green">
-    <div class="icon"><img src="/assets/img/benar.png"></div>
+    <div class="icon"><img src="../../img/benar.png"></div>
     <h2 id="totalTidak">2</h2>
     <p>Total “Ya”</p>
     <small>0%</small>
   </div>
 
   <div class="summary-card red">
-    <div class="icon"><img src="/assets/img/salah.png"></div>
+    <div class="icon"><img src="../../img/salah.png"></div>
     <h2 id="totalTotalTidak">0</h2>
     <p>Total “Total Tidak”</p>
   </div>
 
   <div class="summary-card gray">
-    <div class="icon"><img src="/assets/img/tidak.png"></div>
+    <div class="icon"><img src="../../img/tidak.png"></div>
     <h2 id="tidakDinilai">4</h2>
     <p>Tidak Dinilai</p>
     <small>66,7%</small>
@@ -372,19 +372,19 @@
   </div>
 
   <div class="summary-card blue">
-    <div class="icon user"><img src="/assets/img/user.png"></div>
+    <div class="icon user"><img src="../../img/user.png"></div>
     <h2 id="namaRekan">0</h2>
     <p>Nama Rekan dilaporkan</p>
   </div>
 
   <div class="summary-card lightblue">
-    <div class="icon"><img src="/assets/img/benar.png"></div>
+    <div class="icon"><img src="../../img/benar.png"></div>
     <p>Rata-rata kepatuhan</p>
     <h2 id="rataKepatuhan">100%</h2>
   </div>
 
   <div class="summary-card purple">
-    <div class="icon door"><img src="/assets/img/door.png"></div>
+    <div class="icon door"><img src="../../img/door.png"></div>
     <p><b>Semua Ruangan</b></p>
     <small>Nama Ruangan</small>
   </div>
@@ -400,12 +400,12 @@
 
 <div class="search-box">
   <div class="search-input-wrap">
-    <img src="/assets/img/search.png" alt="search">
+    <img src="../../img/search.png" alt="search">
     <input type="text" id="searchRealtime"
       placeholder="Cari auditor / pegawai / ruangan...">
   </div>
   <button class="btn-export-table" onclick="openExportConfirm()">
-    <img src="/assets/img/excel.png" alt="Excel">
+    <img src="../../img/excel.png" alt="Excel">
     Export Excel
   </button>
 </div>
@@ -414,7 +414,7 @@
   <div class="alert-modal">
     <span class="alert-close" onclick="closeExportConfirm()">X</span>
     <div class="alert-icon">
-      <img src="/assets/img/xlsxDownload.png">
+      <img src="../../img/xlsxDownload.png">
     </div>
     <h3>Export Data Tabel?</h3>
     <p>Data tabel yang tampil akan di download ke Excel.</p>
@@ -510,7 +510,7 @@
 </div>
 
 <!-- ================= SOUND ================= -->
-<audio id="logoutSound" src="/assets/img/audio/ttsMP3.com_VoiceText_2026-3-25_16-43-56.mp3"></audio>
+<audio id="logoutSound" src="../../img/audio/ttsMP3.com_VoiceText_2026-3-25_16-43-56.mp3"></audio>
 
 
 
